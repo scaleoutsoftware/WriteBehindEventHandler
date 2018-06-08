@@ -46,7 +46,7 @@ namespace WriteBehindEventHandler
     class BackingStoreAdapter : IBackingStore
     {
 		// Sample uses one table and two stored procedures defined in the WriteBehindEventHandler_DatabaseObjects.sql file.
-		// The USE_DATABASE, USE_LOGGING and CONNECTION_STRING properties are defined in the Configuration class, that is part of
+		// The USE_DATABASE and CONNECTION_STRING properties are defined in the Configuration class, that is part of
 		// the Common project and can be overwritten by corresponding settings in the app.config file of the WriteBehindEventHandler service.
 		#region IBackingStore Members
 
