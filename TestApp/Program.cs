@@ -33,18 +33,18 @@ using Soss.Client;
 
 namespace TestApp
 {
-    /// <summary>
-    /// Test client application that simulates how a client app might insert and modify an 
-    /// object in the StateServer cache. If running, the WriteBehind service project should 
-    /// pick up changes to the object made by this app and persist them to a DB.
-    /// </summary>
-    class Program
-    {       
-        /// <summary>
-        /// Entry point to the application
-        /// </summary>
-        static void Main(string[] args)
-        {
+	/// <summary>
+	/// Test client application that simulates how a client app might insert and modify an 
+	/// object in the StateServer cache. If running, the WriteBehind service project should 
+	/// pick up changes to the object made by this app and persist them to a DB.
+	/// </summary>
+	class Program
+	{
+		/// <summary>
+		/// Entry point to the application
+		/// </summary>
+		static void Main(string[] args)
+		{
 			SampleObject obj = null;
 			int objectKey = 12345;
 			int iteration = 0;
@@ -53,20 +53,20 @@ namespace TestApp
 
 			NamedCache cache = CacheFactory.GetCache(Configuration.CACHE_NAME);
 
-            // Unlike read-through and write-through operations (which are enabled on an entire NamedCache through the backingStorePolicy parameter), 
-            // the asynchronous write-behind and refresh-ahead operations must be enabled on an object-by-object basis when they are first created 
-            // in the ScaleOut StateServer cache. We use the BackingStoreMode property below to enable write-behind operation for an object. 
-            // We're setting this property on the DefaultCreatePolicy level, so all objects added to this named cache will inherit this setting.
-            // Note that the BackingStoreInterval property controls the interval between asynchronous backing store events.
-            cache.DefaultCreatePolicy.BackingStoreMode = BackingStoreAsyncPolicy.WriteBehind;
-            cache.DefaultCreatePolicy.BackingStoreInterval = TimeSpan.FromSeconds(5);
+			// Unlike read-through and write-through operations (which are enabled on an entire NamedCache through the backingStorePolicy parameter), 
+			// the asynchronous write-behind and refresh-ahead operations must be enabled on an object-by-object basis when they are first created 
+			// in the ScaleOut StateServer cache. We use the BackingStoreMode property below to enable write-behind operation for an object. 
+			// We're setting this property on the DefaultCreatePolicy level, so all objects added to this named cache will inherit this setting.
+			// Note that the BackingStoreInterval property controls the interval between asynchronous backing store events.
+			cache.DefaultCreatePolicy.BackingStoreMode = BackingStoreAsyncPolicy.WriteBehind;
+			cache.DefaultCreatePolicy.BackingStoreInterval = TimeSpan.FromSeconds(5);
 
 			cache.DefaultCreatePolicy.Timeout = TimeSpan.FromSeconds(objectTimeoutInSeconds);
 			cache.DefaultCreatePolicy.IsAbsoluteTimeout = true;
 
 			// Perform a few add/read operations
 			while (iteration < 4)
-            {
+			{
 				int year = DateTime.Now.Year + iteration;
 				double fraction = (DateTime.Now.Month < 10) ? ((double)DateTime.Now.Month/10) : ((double)DateTime.Now.Month/100);
 
@@ -74,18 +74,18 @@ namespace TestApp
 				// Add or Update object to the store
 				cache.Insert(objectKey.ToString(), obj, cache.DefaultCreatePolicy, updateIfExists: true, lockAfterInsert: false);
 
-                Thread.Sleep(2000);
+				Thread.Sleep(2000);
 				// Reading object from the store
 				obj = cache.Retrieve(objectKey.ToString(), false) as SampleObject;
 				if (obj != null)
 					Console.WriteLine($"Added and retrieved the sample object {obj.ToString()} with key {objectKey}");
 
-                Thread.Sleep(2000);
-                iteration++;
-            }
+				Thread.Sleep(2000);
+				iteration++;
+			}
 
 			// Waiting for our test object to expire
-            Console.WriteLine($"Wait for {objectTimeoutInSeconds} seconds to make sure the object is expired, counting...");
+			Console.WriteLine($"Wait for {objectTimeoutInSeconds} seconds to make sure the object is expired, counting...");
 			foreach (var countItem in counting)
 			{
 				Console.WriteLine(countItem);
@@ -106,7 +106,7 @@ namespace TestApp
 			Console.WriteLine($"\nThe sample object {obj.ToString()} was re-added back to the cache.");
 			Console.WriteLine($"You should still observe 2 backing store events fired:\n   one is for adding object back and another one is for removing it due to its expiration in {objectTimeoutInSeconds} seconds.");
 			Console.WriteLine("\nPress Enter to finish the application.");
-            Console.ReadLine();
-        }
-    }
+			Console.ReadLine();
+		}
+	}
 }

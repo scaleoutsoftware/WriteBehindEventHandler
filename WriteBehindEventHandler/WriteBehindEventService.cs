@@ -35,28 +35,28 @@ using Soss.Client;
 
 namespace WriteBehindEventHandler
 {
-    /// <summary>
-    /// A Windows service dedicated to handling write-behind events coming
-    /// out of the ScaleOut StateServer service, where objects in the StateServer
-    /// store need to be periodically persisted to a database. Using a service is
-    /// an alternative to processing write-behind events directly in an ASP.NET app.
-    /// </summary>
-    public partial class WriteBehindEventService : ServiceBase
-    {
+	/// <summary>
+	/// A Windows service dedicated to handling write-behind events coming
+	/// out of the ScaleOut StateServer service, where objects in the StateServer
+	/// store need to be periodically persisted to a database. Using a service is
+	/// an alternative to processing write-behind events directly in an ASP.NET app.
+	/// </summary>
+	public partial class WriteBehindEventService : ServiceBase
+	{
 		/// <summary>
 		/// Public constructor.
 		/// </summary>
-		public WriteBehindEventService()
-        {
-            InitializeComponent();
-        }
+	public WriteBehindEventService()
+	{
+		InitializeComponent();
+	}
 
-        /// <summary>
-        /// Executes when a Start command is sent to the service by the Service Control Manager.
-        /// </summary>
-        /// <param name="args">Data passed by the start command.</param>
-        protected override void OnStart(string[] args)
-        {
+	/// <summary>
+	/// Executes when a Start command is sent to the service by the Service Control Manager.
+	/// </summary>
+	/// <param name="args">Data passed by the start command.</param>
+	protected override void OnStart(string[] args)
+	{
 			try
 			{
 				// Reading service configuration settings from its configuration file
@@ -84,11 +84,11 @@ namespace WriteBehindEventHandler
 				Logger.WriteError(2, ex);
 				throw;
 			}
-        }
+		}
 
-        protected override void OnStop()
-        {
-        }
+		protected override void OnStop()
+		{
+		}
 
 		public void Debug(string[] args)
 		{

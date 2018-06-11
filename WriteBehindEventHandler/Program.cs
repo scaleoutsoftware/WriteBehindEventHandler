@@ -31,13 +31,13 @@ using System.ServiceProcess;
 
 namespace WriteBehindEventHandler
 {
-    static class Program
-    {
+	static class Program
+	{
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
 		static void Main(string[] args)
-        {
+		{
 			// Run with -debug flag the from command line or within Visual Studio.
 			// Otherwise, install as a Windows Service using installutil.exe or
 			// a setup project (Installshield, WiX Toolset, etc.).
@@ -62,6 +62,6 @@ namespace WriteBehindEventHandler
 				};
 				ServiceBase.Run(ServicesToRun);
 			}
-        }
-    }
+		}
+	}
 }

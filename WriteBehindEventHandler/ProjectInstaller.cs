@@ -38,45 +38,45 @@ using System.ServiceProcess;
 
 namespace WriteBehindEventHandler
 {
-    /// <summary>
-    /// This code is called by installation utilities, such as InstallUtil.exe, when installing a Windows
-    /// service application. It installs an executable containing classes that extend ServiceBase (like 
-    /// our WriteBehindEventService class). 
-    /// </summary>
-    /// <remarks>
-    /// See: "How to: Add Installers to Your Service Application"
-    /// http://msdn.microsoft.com/en-us/library/ddhy0byf(v=vs.110).aspx
-    /// </remarks>
-    [RunInstaller(true)]
-    public partial class ProjectInstaller : System.Configuration.Install.Installer
-    {
-        public ProjectInstaller()
-        {
-            InitializeComponent();
-        }
+	/// <summary>
+	/// This code is called by installation utilities, such as InstallUtil.exe, when installing a Windows
+	/// service application. It installs an executable containing classes that extend ServiceBase (like 
+	/// our WriteBehindEventService class). 
+	/// </summary>
+	/// <remarks>
+	/// See: "How to: Add Installers to Your Service Application"
+	/// http://msdn.microsoft.com/en-us/library/ddhy0byf(v=vs.110).aspx
+	/// </remarks>
+	[RunInstaller(true)]
+	public partial class ProjectInstaller : System.Configuration.Install.Installer
+	{
+		public ProjectInstaller()
+		{
+			InitializeComponent();
+		}
 
-        private void serviceInstaller_AfterInstall(object sender, InstallEventArgs e)
-        {
-            // We'll try to start up the write-behind service immediately after installation:
-            try
-            {
-                ServiceController controller = new ServiceController(this.serviceInstaller.ServiceName);
-                controller.Start();
-            }
-            catch (Exception ex)
-            {
-                String source = this.serviceInstaller.ServiceName + " Installer";
-                String log = "Application";
-                if (!EventLog.SourceExists(source))
-                {
-                    EventLog.CreateEventSource(source, log);
-                }
+		private void serviceInstaller_AfterInstall(object sender, InstallEventArgs e)
+		{
+			// We'll try to start up the write-behind service immediately after installation:
+			try
+			{
+				ServiceController controller = new ServiceController(this.serviceInstaller.ServiceName);
+				controller.Start();
+			}
+			catch (Exception ex)
+			{
+				String source = $"{this.serviceInstaller.ServiceName} Installer";
+				String log = "Application";
+				if (!EventLog.SourceExists(source))
+				{
+					EventLog.CreateEventSource(source, log);
+				}
 
-                EventLog eventLog = new EventLog();
-                eventLog.Source = source;
+				EventLog eventLog = new EventLog();
+				eventLog.Source = source;
 
-                eventLog.WriteEntry("The service could not be started immediately after the installation. Please try to start the service manually. Error: " + ex.Message, EventLogEntryType.Error);
-            }
-        }
-    }
+				eventLog.WriteEntry($"The service could not be started immediately after the installation. Please try to start the service manually. Error: {ex.Message}", EventLogEntryType.Error);
+			}
+		}
+	}
 }

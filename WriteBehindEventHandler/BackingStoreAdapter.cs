@@ -28,23 +28,22 @@
 
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Data.SqlClient;
 
 using Soss.Client;
-using System.IO;
 using Scaleout.Samples.Common;
-using System.Diagnostics;
 
 namespace WriteBehindEventHandler
 {
-    /// <summary>
-    /// A custom IBackingStore implementation that knows how to persist and retrieve cached objects to/from a DB.
-    /// </summary>
-    /// <remarks>
+	/// <summary>
+	/// A custom IBackingStore implementation that knows how to persist and retrieve cached objects to/from a DB.
+	/// </summary>
+	/// <remarks>
 	/// See: http://static.scaleoutsoftware.com/docs/soss_CacheAPIdoc/html/T_Soss_Client_IBackingStore.htm
-    /// </remarks>
-    class BackingStoreAdapter : IBackingStore
-    {
+	/// </remarks>
+	class BackingStoreAdapter : IBackingStore
+	{
 		// Sample uses one table and two stored procedures defined in the WriteBehindEventHandler_DatabaseObjects.sql file.
 		// The USE_DATABASE and CONNECTION_STRING properties are defined in the Configuration class, that is part of
 		// the Common project and can be overwritten by corresponding settings in the app.config file of the WriteBehindEventHandler service.
@@ -56,7 +55,7 @@ namespace WriteBehindEventHandler
 		/// <param name="id">The StateServer identifier of the object to persist.</param>
 		/// <param name="value">The cached object to be written to the backing store.</param>
 		public void Store(CachedObjectId id, object value)
-        {
+		{
 			// The value parameter is the object that's been stored in the cache and needs to be written to the DB.
 			// In this example, the incoming value will be of the SampleObject type.
 
@@ -89,16 +88,16 @@ namespace WriteBehindEventHandler
 			catch (Exception ex)
 			{
 				Logger.WriteMessage(TraceEventType.Error, 11, $"Exception occurred in the Store method: {ex.ToString()}");
-			}                        
-        }
+			}
+		}
 
 
-        /// <summary>
-        /// Removes an object from the backing store. 
-        /// </summary>
-        /// <param name="id">The StateServer identifier of the object to delete from the backing store.</param>
-        public void Erase(CachedObjectId id)
-        {
+		/// <summary>
+		/// Removes an object from the backing store. 
+		/// </summary>
+		/// <param name="id">The StateServer identifier of the object to delete from the backing store.</param>
+		public void Erase(CachedObjectId id)
+		{
 			// Write-behind will call this Erase implementation if an object is removed from the named cache.
 			// If you want the object removed from the DB in that situation, this is the place to do it:
 
@@ -127,33 +126,33 @@ namespace WriteBehindEventHandler
 			}
 		}
 
-        /// <summary>
-        /// Loads an object from the backing store. Return null if there is no value in the backing store for the specified id. 
-        /// </summary>
-        /// <param name="id">The identifier of the object to retrieve from the backing store.</param>
-        /// <returns>The object from the backing store that is to be loaded into ScaleOut StateServer, or null if the object was not found.</returns>
-        public object Load(CachedObjectId id)
-        {
+		/// <summary>
+		/// Loads an object from the backing store. Return null if there is no value in the backing store for the specified id. 
+		/// </summary>
+		/// <param name="id">The identifier of the object to retrieve from the backing store.</param>
+		/// <returns>The object from the backing store that is to be loaded into ScaleOut StateServer, or null if the object was not found.</returns>
+		public object Load(CachedObjectId id)
+		{
 			// This Load method won't ever be invoked because we aren't performing Refresh-Ahead in this sample. 
 			// For read-through and/or refresh-ahead approaches, this method should:
 			// 1. Obtain data from the database for specified object's Id.
 			// 2. Create and return object back to application.
 
 			return null;
-        }
+		}
 
 
-        /// <summary>
-        /// Provides a policy object to be used when a Load(CachedObjectId) operation inserts an object into the named cache.
-        /// If the method returns null then the named cache's DefaultCreatePolicy will be used. 
-        /// </summary>
-        /// <param name="id">The identifier of the object being loaded into the cache.</param>
-        /// <returns>
-        /// The CreatePolicy to be used when inserting the specified object into the cache,
-        /// or null if the named cache's DefaultCreatePolicy is to be used.
-        /// </returns>
-        public CreatePolicy GetCreatePolicy(CachedObjectId id)
-        {
+		/// <summary>
+		/// Provides a policy object to be used when a Load(CachedObjectId) operation inserts an object into the named cache.
+		/// If the method returns null then the named cache's DefaultCreatePolicy will be used. 
+		/// </summary>
+		/// <param name="id">The identifier of the object being loaded into the cache.</param>
+		/// <returns>
+		/// The CreatePolicy to be used when inserting the specified object into the cache,
+		/// or null if the named cache's DefaultCreatePolicy is to be used.
+		/// </returns>
+		public CreatePolicy GetCreatePolicy(CachedObjectId id)
+		{
 			// This GetCreatePolicy method is only called when we're handling read-through events.
 			// If we did need to implement it, however, returning null causes read-through to use
 			// the NamedCache's default create policy when adding an object to the cache.
@@ -166,7 +165,7 @@ namespace WriteBehindEventHandler
 			// policy.BackingStoreInterval = TimeSpan.FromSeconds(30);
 			// policy.Timeout = new TimeSpan(0, 5, 0); // 5 minutes
 			// return policy;
-        }
-        #endregion
-    }
+		}
+		#endregion
+	}
 }
