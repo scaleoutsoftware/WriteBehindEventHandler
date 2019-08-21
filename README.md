@@ -25,5 +25,5 @@ The WriteBehindEventHandler sample consists of three Visual Studio projects: the
 
 ## Prerequisites
 
- - .NET 4.7 or higher.
+ - .NET 4.7.2 or higher.
  - [ScaleOut StateServer](https://www.scaleoutsoftware.com/products/stateserver/), [ScaleOut ComputeServer](https://www.scaleoutsoftware.com/products/computeserver/) or [ScaleOut StreamServer](https://www.scaleoutsoftware.com/products/streamserver/) (an instance of this service should be run locally on every ScaleOut host).
