@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-/* 
+﻿/* 
  * ScaleOut StateServer dedicated write-behind service sample.
  * 
- * Copyright 2013-2018 ScaleOut Software, Inc.
+ * Copyright 2013-2019 ScaleOut Software, Inc.
  * 
  * LICENSE AND DISCLAIMER
  * ----------------------
@@ -33,7 +25,10 @@ using System.Threading.Tasks;
  * HANDLING SYSTEM OR OTHERWISE, EVEN IF WE ARE EXPRESSLY ADVISED OF
  * THE POSSIBILITY OF SUCH DAMAGES.
  */
- 
+using System;
+using System.IO;
+using System.Diagnostics;
+
 namespace Scaleout.Samples.Common
 {
 	/// <summary>

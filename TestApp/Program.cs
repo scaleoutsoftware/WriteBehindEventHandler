@@ -1,7 +1,7 @@
 ﻿/* 
  * ScaleOut StateServer dedicated write-behind service sample.
  * 
- * Copyright 2013-2018 ScaleOut Software, Inc.
+ * Copyright 2013-2019 ScaleOut Software, Inc.
  * 
  * LICENSE AND DISCLAIMER
  * ----------------------
@@ -28,10 +28,11 @@
 
 using System;
 using System.Threading;
-using Scaleout.Samples.Common;
-using Soss.Client;
 
-namespace TestApp
+using Soss.Client;
+using Scaleout.Samples.Common;
+
+namespace Scaleout.Samples.TestApp
 {
 	/// <summary>
 	/// Test client application that simulates how a client app might insert and modify an 

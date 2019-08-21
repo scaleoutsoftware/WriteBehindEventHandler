@@ -1,4 +1,4 @@
-﻿namespace WriteBehindEventHandler
+﻿namespace Scaleout.Samples.WriteBehindEventHandler
 {
     partial class ProjectInstaller
     {

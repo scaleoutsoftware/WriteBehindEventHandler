@@ -34,7 +34,7 @@ using System.Data.SqlClient;
 using Soss.Client;
 using Scaleout.Samples.Common;
 
-namespace WriteBehindEventHandler
+namespace Scaleout.Samples.WriteBehindEventHandler
 {
 	/// <summary>
 	/// A custom IBackingStore implementation that knows how to persist and retrieve cached objects to/from a DB.

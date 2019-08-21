@@ -1,7 +1,7 @@
 ﻿/* 
  * ScaleOut StateServer dedicated write-behind service sample.
  * 
- * Copyright 2013-2018 ScaleOut Software, Inc.
+ * Copyright 2013-2019 ScaleOut Software, Inc.
  * 
  * LICENSE AND DISCLAIMER
  * ----------------------
@@ -30,10 +30,10 @@ using System;
 using System.Diagnostics;
 using System.ServiceProcess;
 
-using Scaleout.Samples.Common;
 using Soss.Client;
+using Scaleout.Samples.Common;
 
-namespace WriteBehindEventHandler
+namespace Scaleout.Samples.WriteBehindEventHandler
 {
 	/// <summary>
 	/// A Windows service dedicated to handling write-behind events coming
@@ -46,17 +46,17 @@ namespace WriteBehindEventHandler
 		/// <summary>
 		/// Public constructor.
 		/// </summary>
-	public WriteBehindEventService()
-	{
-		InitializeComponent();
-	}
+		public WriteBehindEventService()
+		{
+			InitializeComponent();
+		}
 
-	/// <summary>
-	/// Executes when a Start command is sent to the service by the Service Control Manager.
-	/// </summary>
-	/// <param name="args">Data passed by the start command.</param>
-	protected override void OnStart(string[] args)
-	{
+		/// <summary>
+		/// Executes when a Start command is sent to the service by the Service Control Manager.
+		/// </summary>
+		/// <param name="args">Data passed by the start command.</param>
+		protected override void OnStart(string[] args)
+		{
 			try
 			{
 				// Reading service configuration settings from its configuration file

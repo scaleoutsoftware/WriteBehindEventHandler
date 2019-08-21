@@ -1,7 +1,7 @@
 ﻿/* 
  * ScaleOut StateServer dedicated write-behind service sample.
  * 
- * Copyright 2013-2018 ScaleOut Software, Inc.
+ * Copyright 2013-2019 ScaleOut Software, Inc.
  * 
  * LICENSE AND DISCLAIMER
  * ----------------------
@@ -25,18 +25,14 @@
  * HANDLING SYSTEM OR OTHERWISE, EVEN IF WE ARE EXPRESSLY ADVISED OF
  * THE POSSIBILITY OF SUCH DAMAGES.
  */
-
-
+ 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration.Install;
-using System.Linq;
 using System.Diagnostics;
+using System.ComponentModel;
 using System.ServiceProcess;
+using System.Configuration.Install;
 
-namespace WriteBehindEventHandler
+namespace Scaleout.Samples.WriteBehindEventHandler
 {
 	/// <summary>
 	/// This code is called by installation utilities, such as InstallUtil.exe, when installing a Windows

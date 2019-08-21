@@ -1,7 +1,7 @@
 ﻿/* 
  * ScaleOut StateServer dedicated write-behind service sample.
  * 
- * Copyright 2013-2018 ScaleOut Software, Inc.
+ * Copyright 2013-2019 ScaleOut Software, Inc.
  * 
  * LICENSE AND DISCLAIMER
  * ----------------------
@@ -29,7 +29,7 @@
 using System;
 using System.ServiceProcess;
 
-namespace WriteBehindEventHandler
+namespace Scaleout.Samples.WriteBehindEventHandler
 {
 	static class Program
 	{
@@ -42,7 +42,6 @@ namespace WriteBehindEventHandler
 			// Otherwise, install as a Windows Service using installutil.exe or
 			// a setup project (Installshield, WiX Toolset, etc.).
 			// See: https://msdn.microsoft.com/en-us/library/sd8zc8ha.aspx
-
 			if (args.Length > 0 && args[0].EndsWith("debug", StringComparison.CurrentCultureIgnoreCase))
 			{
 				// run from the command line for development/debugging purposes
