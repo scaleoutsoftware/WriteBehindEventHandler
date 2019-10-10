@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ScaleOut Software, Inc.")]
 [assembly: AssemblyProduct("WriteBehindEventHandler sample suite")]
-[assembly: AssemblyCopyright("Copyright © 2013-2018 ScaleOut Software, Inc.")]
+[assembly: AssemblyCopyright("Copyright © 2013-2019 ScaleOut Software, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
