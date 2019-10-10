@@ -39,14 +39,15 @@ namespace Scaleout.Samples.WriteBehindEventHandler
 		static void Main(string[] args)
 		{
 			// Run with -debug flag the from command line or within Visual Studio.
-			// Otherwise, install as a Windows Service using installutil.exe or
+			// Otherwise, install as a Windows Service using InstallUtil.exe .NET tool or
 			// a setup project (Installshield, WiX Toolset, etc.).
 			// See: https://msdn.microsoft.com/en-us/library/sd8zc8ha.aspx
 			if (args.Length > 0 && args[0].EndsWith("debug", StringComparison.CurrentCultureIgnoreCase))
 			{
-				// run from the command line for development/debugging purposes
+				// Run from the command line for development/debugging purposes
 				var service = new WriteBehindEventService();
 				service.Debug(args);
+				Console.WriteLine("The Write-Behind Event Handler process is up and running...");
 				Console.WriteLine("Hit ENTER to stop.");
 				Console.ReadLine();
 				service.Stop();
