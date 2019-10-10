@@ -101,7 +101,7 @@ namespace Scaleout.Samples.TestApp
 				Console.WriteLine($"\tObject is still present, key: {obj.ToString()}, updating it.");
 
 			// Final step - re-adding it back to observe a pair of write-behind events associated with the object (store and erase) one more time
-			obj = new SampleObject(988, 988.6, $"June, 988");
+			obj = new SampleObject(2019, 2019.10, $"October, 2019");
 			cache.Insert(objectKey.ToString(), obj, cache.DefaultCreatePolicy, updateIfExists: true, lockAfterInsert: false);
 
 			Console.WriteLine($"\nThe sample object {obj.ToString()} was re-added back to the cache.");
