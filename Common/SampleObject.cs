@@ -1,7 +1,7 @@
 ﻿/* 
  * ScaleOut StateServer dedicated write-behind service sample.
  * 
- * Copyright 2013-2019 ScaleOut Software, Inc.
+ * Copyright 2013-2023 ScaleOut Software, Inc.
  * 
  * LICENSE AND DISCLAIMER
  * ----------------------
